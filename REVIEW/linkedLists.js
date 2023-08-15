@@ -79,6 +79,25 @@ class LinkedList {
         }
         return curr
     }
+
+    reverse() {
+        if(!this.head.next) return this
+
+        let first = this.head
+        this.tail = this.head
+        let second = first.next
+
+        while(second) {
+            const temp = second.next
+            second.next = first
+            first = second
+            second = temp
+        }
+
+        this.head.next = null
+        this.head = first
+        this.printList()
+    }
 }
 
 const myLinked = new LinkedList(5)
@@ -88,4 +107,5 @@ myLinked.append(17)
 myLinked.prepend(1)
 myLinked.insert(2, 8)
 myLinked.remove(5)
+myLinked.reverse()
 console.log(myLinked.printList())
